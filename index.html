@@ -490,20 +490,24 @@ async function sendMessage(question) {
   sendChatButton.disabled = true;
   sendChatButton.textContent = 'Sending…';
 
-  const pending = addBubble(
-    'Connecting to MediaIsrael AI…',
-    'assistant',
-    'typing'
-  );
+ 
+const pending = addBubble(
+  'Connecting to MediaIsrael AI…',
+  'assistant',
+  'typing'
+);
 
-  try {
-    const response = await fetch(AI_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ message })
-    });
+try {
+  const response = await fetch(AI_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer pbwwmbclnslaqegwihoj',
+      'apikey': 'pbwwmbclnslaqegwihoj'
+    },
+    body: JSON.stringify({ message })
+  });
+
 
     let data;
 
