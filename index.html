@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b2c55">
+<meta name="description" content="MEDIA ISRAEL — Media production, livestreaming, video editing, photography, content creation, and media setup for churches, events, and brands.">
+<title>MEDIA ISRAEL | Media Production & Livestreaming</title>
+<style>
+:root{--navy:#0b2c55;--blue:#1769aa;--sky:#eaf5ff;--pale:#f5faff;--ink:#17283b;--muted:#627286;--line:#dce8f3;--white:#fff;--shadow:0 20px 60px rgba(11,44,85,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#fff 0%,#f7fbff 100%)}button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}.shell{max-width:1180px;margin:auto;padding:0 26px}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(220,232,243,.8)}
+.nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.08em;color:var(--navy);font-size:15px}.monogram{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#0b2c55,#1685c9);color:#fff;font-size:18px;letter-spacing:-.08em;box-shadow:0 7px 18px #0b2c5525}.brand small{display:block;font-size:9px;letter-spacing:.13em;color:var(--blue);margin-top:3px}.navlinks{display:flex;align-items:center;gap:7px}.navlinks button{border:0;background:transparent;color:#586a7d;padding:11px 14px;border-radius:12px;cursor:pointer;font-size:13px;font-weight:750;transition:.2s}.navlinks button.active,.navlinks button:hover{background:var(--sky);color:var(--blue)}.navlinks .nav-cta{background:var(--navy);color:white;padding:12px 17px}.navlinks .nav-cta:hover{background:var(--blue);color:#fff}
+main{min-height:70vh}.screen{display:none;animation:rise .42s ease both}.screen.active{display:block}@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.16em;font-size:10px;font-weight:900;color:var(--blue)}.eyebrow:before{content:"";width:24px;height:2px;background:#44a8e5;border-radius:4px}.hero{padding:70px 0 68px;display:grid;grid-template-columns:1fr .92fr;align-items:center;gap:60px}.hero h1{font-size:clamp(38px,5vw,64px);line-height:1.02;letter-spacing:-.055em;color:var(--navy);margin:18px 0 22px}.hero h1 span{color:var(--blue)}.lead{font-size:16px;line-height:1.8;color:var(--muted);max-width:570px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:29px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 20px;border-radius:12px;border:1px solid var(--line);font-weight:800;font-size:13px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}.btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px #0b2c5515}.primary{background:var(--navy);color:#fff;border-color:var(--navy)}.primary:hover{background:var(--blue)}.secondary{background:#fff;color:var(--navy)}.hero-visual{position:relative}.hero-frame{border-radius:28px;overflow:hidden;box-shadow:var(--shadow);border:8px solid #fff;aspect-ratio:4/4.4;background:#d9e9f6}.hero-frame img{width:100%;height:100%;object-fit:cover;display:block}.floating-note{position:absolute;bottom:23px;left:-24px;background:#fff;padding:16px 19px;border-radius:16px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;max-width:235px}.note-icon{width:38px;height:38px;border-radius:12px;background:var(--sky);display:grid;place-items:center;color:var(--blue);font-size:18px}.floating-note strong{display:block;font-size:12px;color:var(--navy)}.floating-note small{display:block;font-size:10px;color:var(--muted);margin-top:4px}
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;background:#ffffffa6}.trust-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}.trust-label{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#8392a3;font-weight:850}.pill{font-size:12px;color:#37516b;font-weight:750;background:#f1f7fc;border:1px solid #e2edf6;border-radius:100px;padding:10px 14px}
+.section{padding:74px 0}.section-head{max-width:650px;margin-bottom:30px}.section h2,.page-heading h1{font-size:clamp(30px,4vw,45px);letter-spacing:-.045em;line-height:1.12;color:var(--navy);margin:14px 0}.section-head p,.page-heading p{color:var(--muted);line-height:1.8}.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.service{padding:25px;background:#fff;border:1px solid var(--line);border-radius:19px;box-shadow:0 8px 28px #0b2c5506;transition:.22s}.service:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#b7d9f4}.service-icon{width:46px;height:46px;border-radius:14px;background:var(--sky);color:var(--blue);display:grid;place-items:center;font-size:20px;margin-bottom:19px}.service h3{color:var(--navy);font-size:16px;margin:0 0 9px}.service p{color:var(--muted);font-size:13px;line-height:1.75;margin:0}
+.preview-row{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center;background:#edf7ff;border:1px solid #d9ecfb;border-radius:25px;padding:28px}.preview-row img{width:100%;height:310px;object-fit:cover;border-radius:18px}.preview-row h3{font-size:27px;letter-spacing:-.03em;color:var(--navy);margin:14px 0}.preview-row p{color:var(--muted);line-height:1.8;font-size:14px}
+.page-heading{padding:65px 0 26px;max-width:720px}.page-heading h1{font-size:clamp(36px,5vw,56px)}.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;padding-bottom:70px}.about-grid img{width:100%;height:430px;object-fit:cover;border-radius:24px;box-shadow:var(--shadow)}.copy p{line-height:1.9;color:var(--muted)}.checklist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:23px}.check{display:flex;gap:9px;align-items:flex-start;font-size:13px;font-weight:750;color:#30475e}.check b{color:var(--blue)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:25px 0}.stat{padding:20px;border:1px solid var(--line);background:#fff;border-radius:16px}.stat strong{display:block;color:var(--blue);font-size:19px}.stat span{font-size:11px;color:var(--muted);display:block;margin-top:5px}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:70px}.work{background:white;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 10px 35px #0b2c5508}.work img{width:100%;height:260px;object-fit:cover;display:block}.work-body{padding:19px}.work small{color:var(--blue);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:900}.work h3{font-size:17px;color:var(--navy);margin:9px 0}.work p{font-size:12px;color:var(--muted);line-height:1.7;margin:0}
+.process{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 70px}.step{padding:23px;border-radius:18px;background:#fff;border:1px solid var(--line)}.step span{font-size:11px;font-weight:900;color:var(--blue);letter-spacing:.13em}.step h3{font-size:15px;color:var(--navy);margin:14px 0 8px}.step p{font-size:12px;color:var(--muted);line-height:1.7;margin:0}
+.contact-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:35px;padding-bottom:75px}.contact-panel{background:var(--navy);color:white;border-radius:23px;padding:30px;align-self:start}.contact-panel h2{font-size:29px;line-height:1.1;letter-spacing:-.04em}.contact-panel p{color:#d4e4f5;font-size:13px;line-height:1.8}.contact-detail{padding:16px 0;border-top:1px solid #ffffff24;font-size:13px}.contact-detail small{display:block;color:#a9c8e7;font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}.form-card{background:white;border:1px solid var(--line);border-radius:23px;padding:28px;box-shadow:var(--shadow)}.form-card h2{color:var(--navy);font-size:25px;margin:0 0 8px}.form-card>p{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:22px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:11px;font-weight:850;color:#38506a}.field input,.field select,.field textarea{width:100%;border:1px solid #dce6ef;border-radius:10px;background:#fbfdff;padding:13px;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#5aa6df;box-shadow:0 0 0 3px #d9efff}.field textarea{min-height:112px;resize:vertical}.fineprint{font-size:10px!important;color:#7d8b9a!important;line-height:1.7}.notice{display:none;background:#eaf7ee;border:1px solid #b8e5c4;border-radius:10px;padding:12px;color:#1c6534;font-size:12px;margin-top:14px}
+
+.ai-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:22px;padding:8px 0 76px;align-items:stretch}.ai-side{background:linear-gradient(150deg,#0b2c55,#125b94);border-radius:24px;padding:30px;color:#fff;min-height:360px}.ai-orb{width:68px;height:68px;border-radius:22px;display:grid;place-items:center;position:relative;background:linear-gradient(140deg,#dff4ff,#79c8fa);color:#0b2c55;font-weight:950;font-size:23px;box-shadow:0 12px 32px #03172b55}.ai-orb span{position:absolute;right:-5px;top:-7px;color:#fff;background:#2a93d0;border-radius:50%;width:25px;height:25px;display:grid;place-items:center;font-size:13px}.ai-side h2{font-size:25px;letter-spacing:-.04em;margin:24px 0 8px}.ai-side>p{color:#d6eaff;line-height:1.7;font-size:13px}.ai-status{display:flex;gap:9px;align-items:flex-start;padding:12px;background:#ffffff12;border:1px solid #ffffff22;border-radius:12px;font-size:11px;line-height:1.5;margin:22px 0}.ai-status i{width:8px;height:8px;background:#ffd06a;border-radius:50%;flex:none;margin-top:4px}.ai-topics{display:flex;flex-wrap:wrap;gap:8px}.ai-topics span{border:1px solid #ffffff32;background:#ffffff0d;border-radius:100px;padding:8px 10px;font-size:10px}.ai-side .ai-disclaimer{font-size:10px;color:#adc9e5;margin-top:25px}.chat-card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;min-height:590px}.chat-top{padding:20px 23px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.chat-top strong{display:block;color:var(--navy);font-size:14px}.chat-top small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.clear-chat{border:1px solid var(--line);border-radius:9px;background:#fff;color:#5c6c7c;font-size:11px;padding:8px 10px;cursor:pointer}.chat-messages{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1;min-height:260px;max-height:440px;overflow:auto;background:linear-gradient(#fbfdff,#f7fbff)}.bubble{max-width:90%;border-radius:15px;padding:14px 16px;font-size:13px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere}.bubble.assistant{align-self:flex-start;background:#fff;border:1px solid #e1ebf4;color:#334a61;border-top-left-radius:5px}.bubble.user{align-self:flex-end;background:#0b2c55;color:#fff;border-top-right-radius:5px}.bubble b{color:var(--navy)}.bubble.user b{color:#fff}.suggestions{display:flex;gap:8px;flex-wrap:wrap;padding:12px 18px 0}.suggestions button{border:1px solid #d7e8f6;border-radius:100px;background:#f4faff;color:#28618b;padding:8px 10px;font-size:10px;font-weight:750;cursor:pointer}.chat-compose{display:flex;gap:10px;padding:14px 18px 8px;align-items:flex-end}.chat-compose textarea{resize:vertical;max-height:130px;min-height:46px;flex:1;min-width:0;border:1px solid #dce6ef;border-radius:12px;padding:13px;outline:none;font:inherit;font-size:13px}.chat-compose textarea:focus{border-color:#5aa6df;box-shadow:0 0 0 3px #d9efff}.chat-compose .btn{padding:13px 16px}.chat-footnote{font-size:10px;color:#8593a1;padding:0 20px 17px;margin:0;line-height:1.5}.bubble.typing{color:#77899a;font-style:italic}.bubble.error{border-color:#f0c9c9;background:#fff8f8;color:#8d3535}
+@media(max-width:850px){.ai-layout{grid-template-columns:1fr}.ai-side{min-height:auto}.chat-card{min-height:520px}}
+@media(max-width:620px){.ai-layout{padding-bottom:45px}.ai-side{padding:23px}.chat-card{border-radius:18px;min-height:540px}.chat-messages{padding:15px}.bubble{max-width:96%}.chat-compose{padding:12px}.chat-compose .btn{padding:13px 12px}.suggestions{padding:10px 12px 0}.mobilebar button{font-size:9px}}
+
+footer{background:#071e3a;color:#d9e7f5;padding:28px 0}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.footer-brand{font-weight:900;letter-spacing:.1em;font-size:13px}.footer-brand small{display:block;font-weight:500;letter-spacing:0;color:#91abc7;margin-top:6px}.footer-note{font-size:11px;color:#91abc7}
+.mobilebar{display:none}
+@media(max-width:850px){.shell{padding:0 19px}.nav{height:72px}.brand{font-size:12px}.monogram{width:38px;height:38px}.navlinks{gap:2px}.navlinks button{padding:9px 10px;font-size:11px}.navlinks .nav-cta{padding:10px}.hero{grid-template-columns:1fr  .85fr;gap:25px;padding:52px 0}.hero h1{font-size:46px}.floating-note{left:-10px}.service-grid,.portfolio-grid{grid-template-columns:repeat(2,1fr)}.about-grid{gap:25px}.work img{height:220px}}
+@media(max-width:620px){.shell{padding:0 17px}.nav{height:68px}.navlinks{display:none}.hero{display:flex;flex-direction:column;align-items:stretch;padding:42px 0 35px;gap:32px}.hero h1{font-size:43px;max-width:470px}.lead{font-size:14px}.hero-visual{max-width:460px;margin:auto;width:100%}.hero-frame{aspect-ratio:1/1.04}.floating-note{left:8px;bottom:13px}.trust-row{justify-content:flex-start}.trust-label{width:100%}.section{padding:52px 0}.service-grid,.portfolio-grid,.about-grid,.contact-layout,.preview-row{grid-template-columns:1fr}.preview-row{padding:17px}.preview-row img{height:250px}.page-heading{padding:48px 0 20px}.about-grid img{height:310px}.checklist{grid-template-columns:1fr 1fr}.stats{gap:8px}.stat{padding:14px}.stat strong{font-size:16px}.stat span{font-size:10px}.portfolio-grid{padding-bottom:45px}.work img{height:260px}.process{grid-template-columns:1fr;margin-bottom:50px}.contact-layout{gap:20px}.form-card,.contact-panel{padding:22px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.mobilebar{position:fixed;bottom:0;left:0;right:0;z-index:30;display:flex;justify-content:space-around;gap:4px;padding:8px 7px calc(8px + env(safe-area-inset-bottom));background:#ffffffed;backdrop-filter:blur(16px);border-top:1px solid var(--line)}.mobilebar button{flex:1;border:0;background:transparent;border-radius:10px;padding:9px 3px;color:#627286;font-size:10px;font-weight:800}.mobilebar button.active{background:var(--sky);color:var(--blue)}footer{padding-bottom:88px}.footer-row{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+ <div class="shell nav">
+  <a class="brand" href="#" aria-label="MEDIA ISRAEL home" onclick="showScreen('home');return false"><span class="monogram">MI</span><span>MEDIA ISRAEL<small>MEDIA PRODUCTION • LIVESTREAMING</small></span></a>
+  <nav class="navlinks" aria-label="Main navigation">
+   <button class="active" data-screen="home" onclick="showScreen('home')">Home</button>
+   <button data-screen="about" onclick="showScreen('about')">About</button>
+   <button data-screen="work" onclick="showScreen('work')">Portfolio & Services</button>
+   <button data-screen="ai" onclick="showScreen('ai')">MediaIsrael AI ✦</button>
+   <button class="nav-cta" data-screen="contact" onclick="showScreen('contact')">Book a Project ↗</button>
+  </nav>
+ </div>
+</header>
+<main>
+<section class="screen active" id="home">
+ <div class="shell hero">
+  <div>
+   <span class="eyebrow">Creative media. Reliable delivery.</span>
+   <h1>Make your message <span>impossible to miss.</span></h1>
+   <p class="lead">Professional media production for churches, events, creators and growing brands — from live streaming and video editing to photography, content and media setup.</p>
+   <div class="actions"><button class="btn primary" onclick="showScreen('contact')">Let's plan your project <span>↗</span></button><button class="btn secondary" onclick="showScreen('work')">Explore my work <span>→</span></button></div>
+  </div>
+  <div class="hero-visual"><div class="hero-frame"><img src="assets/hero.jpg" alt="Media Israel at a live production control setup"></div><div class="floating-note"><span class="note-icon">◉</span><span><strong>Live production & digital content</strong><small>From setup to final delivery</small></span></div></div>
+ </div>
+ <div class="trust"><div class="shell trust-row"><span class="trust-label">Creative support for</span><span class="pill">Churches & ministries</span><span class="pill">Events & live shows</span><span class="pill">Creators & businesses</span><span class="pill">Digital communities</span></div></div>
+ <div class="shell section">
+  <div class="section-head"><span class="eyebrow">What I do</span><h2>Media services built around your message.</h2><p>Thoughtful visuals, dependable technical support and content that helps people connect with what you do.</p></div>
+  <div class="service-grid">
+   <article class="service"><div class="service-icon">◉</div><h3>Livestream Production</h3><p>Live video switching, stream setup and production support for church services, events and online audiences.</p></article>
+   <article class="service"><div class="service-icon">▶</div><h3>Video Editing</h3><p>Clean cuts, pacing, captions and finishing that turn raw footage into engaging, ready-to-share videos.</p></article>
+   <article class="service"><div class="service-icon">▣</div><h3>Media Setup</h3><p>Practical setup support for cameras, computers, audio routing and live production workflows.</p></article>
+  </div>
+  <div style="height:28px"></div>
+  <div class="preview-row"><img src="assets/training.jpg" alt="Hands-on media and technology work with a laptop and phone"><div><span class="eyebrow">Practical experience</span><h3>Technology should help your story reach further.</h3><p>I combine creative thinking with hands-on media work to help teams communicate clearly, whether that means running a livestream, preparing a video or setting up a production workflow.</p><button class="btn secondary" onclick="showScreen('about')">Get to know me →</button></div></div>
+ </div>
+</section>
+<section class="screen" id="about">
+ <div class="shell">
+  <div class="page-heading"><span class="eyebrow">About Media Israel</span><h1>Creative skills. Technical thinking. One clear purpose.</h1><p>I help people and organisations capture moments, communicate with clarity and deliver media experiences that feel professional.</p></div>
+  <div class="about-grid"><img src="assets/collaboration.jpg" alt="Collaborative media work"><div class="copy"><span class="eyebrow">Who I am</span><h2 style="font-size:31px;line-height:1.15;color:var(--navy);letter-spacing:-.04em">A media creative who cares about the details.</h2><p>MEDIA ISRAEL brings together live production, video editing, photography, social media and media setup. My approach is practical: understand the goal, plan the workflow, pay attention to the details and help deliver work that serves the audience.</p><p>From church media environments to digital content, I focus on reliability, continuous learning and making the most of the tools available.</p><div class="checklist"><div class="check"><b>✓</b> Livestream production</div><div class="check"><b>✓</b> Video editing</div><div class="check"><b>✓</b> Photography & photo editing</div><div class="check"><b>✓</b> Social media management</div><div class="check"><b>✓</b> Content creation</div><div class="check"><b>✓</b> Media setup & workflow</div></div><div class="actions"><button class="btn primary" onclick="showScreen('contact')">Discuss a project ↗</button></div></div></div>
+  <div class="section-head"><span class="eyebrow">How I work</span><h2>Clear process, from first message to final file.</h2></div>
+  <div class="process"><div class="step"><span>01 / DISCOVER</span><h3>Understand the goal</h3><p>We discuss your event, audience, deliverables, timeline and available equipment.</p></div><div class="step"><span>02 / PLAN</span><h3>Build the workflow</h3><p>I recommend a practical approach based on your needs, scope and budget.</p></div><div class="step"><span>03 / DELIVER</span><h3>Produce & hand over</h3><p>We confirm the deliverables and next steps so expectations stay clear.</p></div></div>
+ </div>
+</section>
+<section class="screen" id="work">
+ <div class="shell">
+  <div class="page-heading"><span class="eyebrow">Portfolio & services</span><h1>Creative work with a real-world purpose.</h1><p>A first look at practical media work. More project photos and video examples can be added as you share them.</p></div>
+  <div class="actions" style="margin:0 0 28px"><a class="btn primary" href="https://drive.google.com/drive/folders/1fTq-BZuGVk4barnL_iPVWIGeNqfQ1qyJ" target="_blank" rel="noopener">View more work on Google Drive ↗</a><span class="fineprint" style="align-self:center">More examples can be added to this folder over time.</span></div>
+  <div class="portfolio-grid">
+   <article class="work"><img src="assets/hero.jpg" alt="Live production workstation"><div class="work-body"><small>01 / Live production</small><h3>Livestreaming & live switching</h3><p>Production control, camera feeds and online broadcast workflows for services and events.</p></div></article>
+   <article class="work"><img src="assets/collaboration.jpg" alt="Media collaboration"><div class="work-body"><small>02 / Collaboration</small><h3>Media teamwork & workflow</h3><p>Working through technical details and supporting the people behind the production.</p></div></article>
+   <article class="work"><img src="assets/training.jpg" alt="Laptop and smartphone in a practical work session"><div class="work-body"><small>03 / Technical media</small><h3>Media setup & training</h3><p>Hands-on computer and smartphone workflows for media production and digital delivery.</p></div></article>
+  </div>
+  <div class="section-head"><span class="eyebrow">Services</span><h2>Ways we can work together.</h2><p>Choose a service or combine several for a complete production solution.</p></div>
+  <div class="service-grid">
+   <article class="service"><div class="service-icon">◉</div><h3>Livestreaming</h3><p>Setup, live switching, stream monitoring and production support.</p></article>
+   <article class="service"><div class="service-icon">▶</div><h3>Video Editing</h3><p>Social videos, event highlights, talking-head edits and captioned content.</p></article>
+   <article class="service"><div class="service-icon">▣</div><h3>Photography</h3><p>Event and behind-the-scenes photography, subject to project requirements.</p></article>
+   <article class="service"><div class="service-icon">✧</div><h3>Photo Editing</h3><p>Careful image adjustments, colour correction and polished final exports.</p></article>
+   <article class="service"><div class="service-icon">#</div><h3>Social Media Management</h3><p>Content planning, publishing support and consistent brand presentation.</p></article>
+   <article class="service"><div class="service-icon">⌘</div><h3>Content & Media Setup</h3><p>Content creation and practical technical setup for a smoother production workflow.</p></article>
+  </div>
+  <div class="actions" style="padding:36px 0 70px"><button class="btn primary" onclick="showScreen('contact')">Book a project ↗</button></div>
+ </div>
+</section>
+
+<section class="screen" id="ai">
+ <div class="shell">
+  <div class="page-heading"><span class="eyebrow">MediaIsrael AI • Media help desk</span><h1>Your practical media-production assistant.</h1><p>Ask about vMix, livestream setup, cameras, audio, video editing, Premiere Pro, social content or troubleshooting. MediaIsrael AI is designed to give clear, step-by-step guidance for real-world setups and budget-conscious workflows.</p></div>
+  <div class="ai-layout">
+   <aside class="ai-side"><div class="ai-orb">MI<span>✦</span></div><h2>MediaIsrael AI</h2><p>Practical answers. Clear steps. Media-focused help.</p><div class="ai-status"><i></i><span id="aiStatus" class="ai-topics"><span>vMix & livestreaming</span><span>Camera & audio setup</span><span>Premiere Pro editing</span><span>Social media workflow</span></div><p class="ai-disclaimer">
+   <div class="chat-card"><div class="chat-top"><div><strong>MediaIsrael AI</strong><small>Media production assistant</small></div><button type="button" id="clearChat" class="clear-chat">Clear chat</button></div>
+    <div class="chat-messages" id="chatMessages" aria-live="polite"><div class="bubble assistant"><b>Welcome 👋</b><br>I'm MediaIsraelAI. Tell me what you're trying to set up or fix, and I'll guide you through it step by step.<br><br>For example: <em>“How do I stream to Facebook and YouTube with vMix on a low budget?”</em></div></div>
+    <div class="suggestions"><button type="button" data-prompt="Help me set up a low-budget church livestream step by step.">Low-budget livestream</button><button type="button" data-prompt="Teach me how to make a clean, professional edit in Premiere Pro 2021.">Premiere Pro</button><button type="button" data-prompt="Help me troubleshoot audio delay and livestream lag.">Fix stream issues</button></div>
+    <form id="chatForm" class="chat-compose"><textarea id="chatInput" rows="1" maxlength="4000" placeholder="Ask a media production question…" aria-label="Your question" required></textarea><button class="btn primary" type="submit" id="sendChat">Send ↗</button></form><p class="chat-footnote">Prototype chat works in demo mode until the secure AI backend is configured. No API key belongs in this webpage.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="screen" id="contact">
+ <div class="shell">
+  <div class="page-heading"><span class="eyebrow">Booking & contact</span><h1>Tell me what you're planning.</h1><p>Share a few details about your project. The form prepares an email with your brief so you can review and send it from your email app.</p></div>
+  <div class="contact-layout">
+   <aside class="contact-panel"><span class="eyebrow" style="color:#91d4ff">Let's work together</span><h2>Have a project in mind?</h2><p>Tell me the service you need, your timeline and the outcome you're aiming for. I'll use those details to understand the best next step.</p>
+    <div class="contact-detail"><small>Email</small><a href="mailto:mediaisrael2007@gmail.com">mediaisrael2007@gmail.com</a></div>
+    <div class="contact-detail"><small>Phone / WhatsApp</small><a href="https://wa.me/2349063120145" target="_blank" rel="noopener">+234 906 312 0145</a></div>
+    <div class="contact-detail"><small>Service focus</small>Media Production • Livestreaming • Digital Content</div>
+   </aside>
+   <form class="form-card" id="bookingForm">
+    <h2>Project enquiry</h2><p>Fill in what you know. You can leave optional details blank.</p>
+    <div class="form-grid">
+     <div class="field"><label for="name">Your name *</label><input id="name" name="name" required placeholder="Full name"></div>
+     <div class="field"><label for="email">Your email *</label><input id="email" name="email" type="email" required placeholder="you@example.com"></div>
+     <div class="field"><label for="service">Service needed *</label><select id="service" name="service" required><option value="">Choose a service</option><option>Livestream production</option><option>Video editing</option><option>Photography</option><option>Photo editing</option><option>Social media management</option><option>Content creation</option><option>Media setup / technical support</option><option>Multiple services</option></select></div>
+     <div class="field"><label for="budget">Estimated budget</label><select id="budget" name="budget"><option value="">Choose a range</option><option>₦50,000 – ₦100,000</option><option>₦100,000 – ₦150,000</option><option>₦150,000 – ₦300,000</option><option>₦300,000+</option><option>Let's discuss the scope</option></select></div>
+     <div class="field"><label for="date">Preferred date</label><input id="date" name="date" type="date"></div>
+     <div class="field"><label for="location">Event / project location</label><input id="location" name="location" placeholder="City or online"></div>
+     <div class="field full"><label for="details">Tell me about your project *</label><textarea id="details" name="details" required placeholder="What do you need, what is the goal, and when do you need it?"></textarea></div>
+     <div class="field full"><button class="btn primary" type="submit">Prepare email enquiry ↗</button><p class="fineprint">This prototype does not send information to a server. It opens your email app with the details filled in; you must press Send there. A live website form can be connected to a secure form service when the site is published.</p><div class="notice" id="formNotice">Your email draft should open in your email app. Review it and press Send to submit your enquiry.</div></div>
+    </div>
+   </form>
+  </div>
+ </div>
+</section>
+</main>
+<footer><div class="shell footer-row"><div class="footer-brand">MEDIA ISRAEL<small>MEDIA PRODUCTION • LIVESTREAMING</small></div><div class="footer-note">Turning moments into impact. © <span id="year"></span> MEDIA ISRAEL</div></div></footer>
+<nav class="mobilebar" aria-label="Mobile navigation"><button class="active" data-screen="home" onclick="showScreen('home')">⌂<br>Home</button><button data-screen="ai" onclick="showScreen('ai')">✦<br>AI Help</button><button data-screen="about" onclick="showScreen('about')">◎<br>About</button><button data-screen="work" onclick="showScreen('work')">▦<br>Portfolio</button><button data-screen="contact" onclick="showScreen('contact')">↗<br>Booking</button></nav>
+<script>
+function showScreen(name){
+ document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===name));
+ document.querySelectorAll('[data-screen]').forEach(b=>b.classList.toggle('active',b.dataset.screen===name));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('year').textContent=new Date().getFullYear();
+
+const chatMessages=document.getElementById('chatMessages');
+const chatForm=document.getElementById('chatForm');
+const chatInput=document.getElementById('chatInput');
+const chatHistory=[];
+function addBubble(text,role,extra=''){const el=document.createElement('div');el.className='bubble '+role+(extra?' '+extra:'');el.textContent=text;chatMessages.appendChild(el);chatMessages.scrollTop=chatMessages.scrollHeight;return el;}
+function demoAnswer(q){
+ const lower=q.toLowerCase();
+ if(lower.includes('vmix')||lower.includes('livestream')||lower.includes('stream')) return `Let’s approach it step by step.
+
+1. Confirm your source: camera, phone, or capture card.
+2. In vMix, choose Add Input and confirm the camera preview is moving.
+3. Check audio meters and monitor with headphones to avoid echo.
+4. Open Settings → Streaming and configure the destination. Keep your stream key private.
+5. Choose a resolution and bitrate your upload connection can sustain.
+6. Run a private or unlisted test and check sound, sync, dropped frames and the platform preview.
+
+Tell me your computer specs, upload speed, camera connection and whether you stream to Facebook, YouTube or both, and I’ll tailor the setup.
+
+This is the built-in demo assistant until live AI is configured.`;
+ if(lower.includes('premiere')||lower.includes('edit')) return `Here is a beginner-friendly Premiere Pro workflow:
+
+1. Create a project and organize your media in folders.
+2. Import footage using File → Import, or drag files into the Project panel.
+3. Create a sequence that matches your footage.
+4. Remove mistakes and dead space first.
+5. Balance dialogue audio before adding music.
+6. Correct exposure and white balance before applying a creative look.
+7. Add readable captions and review on a phone-sized screen.
+8. Export using H.264 with dimensions suited to your platform.
+
+Tell me whether the video is for TikTok, Instagram, YouTube or an event screen for suitable export settings.`;
+ if(lower.includes('audio')||lower.includes('lag')||lower.includes('delay')) return `Troubleshoot one thing at a time:
+
+1. Identify whether the delay is in the audio source, vMix, or only the public stream.
+2. Monitor locally with headphones.
+3. Use one clean audio path and avoid feeding the same mixer signal twice.
+4. Check the audio source in vMix; apply delay only after identifying which signal is early.
+5. Check upload stability and dropped frames; reduce output settings for a test if needed.
+6. Make a short test recording and compare speech with video.
+
+What mixer, sound card or capture card, and vMix version are you using? Is the sound early or late?`;
+ return `I can help with media production and livestreaming in practical steps.
+
+1. Tell me what you want to achieve.
+2. List the equipment and software you have.
+3. Describe what is happening versus what you expected.
+4. I’ll suggest a practical workflow that fits your setup and budget.
+
+This is the built-in demo assistant. For live, adaptive AI answers, deploy the included backend and configure an OpenAI API key privately on the server.`;
+}
+async function sendMessage(q){q=q.trim();if(!q)return;addBubble(q,'user');chatInput.value='';chatInput.disabled=true;document.getElementById('sendChat').disabled=true;const pending=addBubble('Preparing a practical answer…','assistant','typing');try{if(location.protocol==='file:')throw new Error('Local preview mode');const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,history:chatHistory.slice(-8)})});if(!response.ok)throw new Error('AI backend unavailable');const data=await response.json();pending.remove();const answer=data.reply||'I could not create an answer. Please try again.';addBubble(answer,'assistant');chatHistory.push({role:'user',content:q},{role:'assistant',content:answer});}catch(err){pending.remove();addBubble(demoAnswer(q),'assistant');}finally{chatInput.disabled=false;document.getElementById('sendChat').disabled=false;chatInput.focus();}}
+chatForm.addEventListener('submit',e=>{e.preventDefault();sendMessage(chatInput.value);});
+document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>sendMessage(b.dataset.prompt)));
+document.getElementById('clearChat').addEventListener('click',()=>{chatMessages.innerHTML='';chatHistory.length=0;addBubble('Chat cleared. What media production question can I help with?','assistant');});
+
+document.getElementById('bookingForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const d=new FormData(this);
+ const subject=encodeURIComponent('Project enquiry — '+d.get('service'));
+ const body=encodeURIComponent(
+ 'Hello MEDIA ISRAEL,\n\nI would like to discuss a project.\n\nName: '+d.get('name')+
+ '\nEmail: '+d.get('email')+'\nService: '+d.get('service')+'\nBudget: '+(d.get('budget')||'Not specified')+
+ '\nPreferred date: '+(d.get('date')||'Not specified')+'\nLocation: '+(d.get('location')||'Not specified')+
+ '\n\nProject details:\n'+d.get('details')+'\n\nThank you.'
+ );
+ document.getElementById('formNotice').style.display='block';
+ window.location.href='mailto:mediaisrael2007@gmail.com?subject='+subject+'&body='+body;
+});
+</script>
+</body></html>
