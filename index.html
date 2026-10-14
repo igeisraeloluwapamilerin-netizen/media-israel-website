@@ -199,20 +199,62 @@ What mixer, sound card or capture card, and vMix version are you using? Is the s
 
 This is the built-in demo assistant. For live, adaptive AI answers, deploy the included backend and configure an OpenAI API key privately on the server.`;
 }
-async function sendMessage(q){q=q.trim();if(!q)return;addBubble(q,'user');chatInput.value='';chatInput.disabled=true;document.getElementById('sendChat').disabled=true;const pending=addBubble('Preparing a practical answer…','assistant','typing');try{if(location.protocol==='file:')throw new Error('Local preview mode');const response=await 
-fetch('https://pbwwmbclnslaqegwihoj.supabase.co/functions/v1/smooth-endpoint',{
-  method:'POST',
-  headers:{
-    'Content-Type':'application/json'
-  },
-  body:JSON.stringify({message:q})
-})
-;if(!response.ok)throw new Error('AI backend unavailable');const data=await response.json();pending.remove();const answer=data.reply||'I could not create an answer. Please try again.';addBubble(answer,'assistant');chatHistory.push({role:'user',content:q},{role:'assistant',content:answer});}
-catch(err){
-  pending.remove();
-  addBubble('Live AI connection failed: ' + err.message + '. Please check the Supabase function and Gemini API key.','assistant');
-  console.error('Live AI error:', err);
+
+async function sendMessage(q) {
+  q = q.trim();
+  if (!q) return;
+
+  addBubble(q, 'user');
+  chatInput.value = '';
+  chatInput.disabled = true;
+  document.getElementById('sendChat').disabled = true;
+
+  const pending = addBubble(
+    'Connecting to MediaIsrael AI…',
+    'assistant',
+    'typing'
+  );
+
+  try {
+    const response = await fetch(
+      'https://pbwwmbclnslaqegwihoj.supabase.co/functions/v1/smooth-endpoint',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: q })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || data.message || `Request failed: ${response.status}`);
+    }
+
+    if (!data.reply) {
+      throw new Error('The AI returned no answer.');
+    }
+
+    pending.remove();
+    addBubble(data.reply, 'assistant');
+
+  } catch (err) {
+    pending.remove();
+    addBubble(
+      'AI connection error: ' + err.message,
+      'assistant'
+    );
+    console.error('MediaIsrael AI error:', err);
+
+  } finally {
+    chatInput.disabled = false;
+    document.getElementById('sendChat').disabled = false;
+    chatInput.focus();
+  }
 }
+
 ,'assistant');}finally{chatInput.disabled=false;document.getElementById('sendChat').disabled=false;chatInput.focus();}}
 chatForm.addEventListener('submit',e=>{e.preventDefault();sendMessage(chatInput.value);});
 document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>sendMessage(b.dataset.prompt)));
