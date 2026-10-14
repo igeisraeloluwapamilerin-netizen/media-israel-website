@@ -207,7 +207,13 @@ fetch('https://pbwwmbclnslaqegwihoj.supabase.co/functions/v1/smooth-endpoint',{
   },
   body:JSON.stringify({message:q})
 })
-;if(!response.ok)throw new Error('AI backend unavailable');const data=await response.json();pending.remove();const answer=data.reply||'I could not create an answer. Please try again.';addBubble(answer,'assistant');chatHistory.push({role:'user',content:q},{role:'assistant',content:answer});}catch(err){pending.remove();addBubble(demoAnswer(q),'assistant');}finally{chatInput.disabled=false;document.getElementById('sendChat').disabled=false;chatInput.focus();}}
+;if(!response.ok)throw new Error('AI backend unavailable');const data=await response.json();pending.remove();const answer=data.reply||'I could not create an answer. Please try again.';addBubble(answer,'assistant');chatHistory.push({role:'user',content:q},{role:'assistant',content:answer});}
+catch(err){
+  pending.remove();
+  addBubble('Live AI connection failed: ' + err.message + '. Please check the Supabase function and Gemini API key.','assistant');
+  console.error('Live AI error:', err);
+}
+,'assistant');}finally{chatInput.disabled=false;document.getElementById('sendChat').disabled=false;chatInput.focus();}}
 chatForm.addEventListener('submit',e=>{e.preventDefault();sendMessage(chatInput.value);});
 document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>sendMessage(b.dataset.prompt)));
 document.getElementById('clearChat').addEventListener('click',()=>{chatMessages.innerHTML='';chatHistory.length=0;addBubble('Chat cleared. What media production question can I help with?','assistant');});
