@@ -199,7 +199,15 @@ What mixer, sound card or capture card, and vMix version are you using? Is the s
 
 This is the built-in demo assistant. For live, adaptive AI answers, deploy the included backend and configure an OpenAI API key privately on the server.`;
 }
-async function sendMessage(q){q=q.trim();if(!q)return;addBubble(q,'user');chatInput.value='';chatInput.disabled=true;document.getElementById('sendChat').disabled=true;const pending=addBubble('Preparing a practical answer…','assistant','typing');try{if(location.protocol==='file:')throw new Error('Local preview mode');const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,history:chatHistory.slice(-8)})});if(!response.ok)throw new Error('AI backend unavailable');const data=await response.json();pending.remove();const answer=data.reply||'I could not create an answer. Please try again.';addBubble(answer,'assistant');chatHistory.push({role:'user',content:q},{role:'assistant',content:answer});}catch(err){pending.remove();addBubble(demoAnswer(q),'assistant');}finally{chatInput.disabled=false;document.getElementById('sendChat').disabled=false;chatInput.focus();}}
+async function sendMessage(q){q=q.trim();if(!q)return;addBubble(q,'user');chatInput.value='';chatInput.disabled=true;document.getElementById('sendChat').disabled=true;const pending=addBubble('Preparing a practical answer…','assistant','typing');try{if(location.protocol==='file:')throw new Error('Local preview mode');const response=await 
+fetch('https://pbwwmbclnslaqegwihoj.supabase.co/functions/v1/smooth-endpoint',{
+  method:'POST',
+  headers:{
+    'Content-Type':'application/json'
+  },
+  body:JSON.stringify({message:q})
+})
+;if(!response.ok)throw new Error('AI backend unavailable');const data=await response.json();pending.remove();const answer=data.reply||'I could not create an answer. Please try again.';addBubble(answer,'assistant');chatHistory.push({role:'user',content:q},{role:'assistant',content:answer});}catch(err){pending.remove();addBubble(demoAnswer(q),'assistant');}finally{chatInput.disabled=false;document.getElementById('sendChat').disabled=false;chatInput.focus();}}
 chatForm.addEventListener('submit',e=>{e.preventDefault();sendMessage(chatInput.value);});
 document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>sendMessage(b.dataset.prompt)));
 document.getElementById('clearChat').addEventListener('click',()=>{chatMessages.innerHTML='';chatHistory.length=0;addBubble('Chat cleared. What media production question can I help with?','assistant');});
