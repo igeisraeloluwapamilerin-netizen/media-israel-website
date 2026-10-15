@@ -456,14 +456,6 @@ function addBubble(text, role, extra = '') {
   chatMessages.scrollTop = chatMessages.scrollHeight;
   return element;
 }
-function addBubble(text, role, extra = '') {
-  const element = document.createElement('div');
-  element.className = 'bubble ' + role + (extra ? ' ' + extra : '');
-  element.textContent = text;
-  chatMessages.appendChild(element);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-  return element;
-}
 
 function addFormattedBubble(text) {
   const element = document.createElement('div');
