@@ -455,6 +455,44 @@ function addBubble(text, role, extra = '') {
   chatMessages.scrollTop = chatMessages.scrollHeight;
   return element;
 }
+function addBubble(text, role, extra = '') {
+  const element = document.createElement('div');
+  element.className = 'bubble ' + role + (extra ? ' ' + extra : '');
+  element.textContent = text;
+  chatMessages.appendChild(element);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  return element;
+}
+
+function addFormattedBubble(text) {
+  const element = document.createElement('div');
+  element.className = 'bubble assistant';
+
+  const lines = String(text).split('\n');
+
+  lines.forEach((line, index) => {
+    if (index > 0) {
+      element.appendChild(document.createElement('br'));
+    }
+
+    const parts = line.split(/(\*\*.*?\*\*)/g);
+
+    parts.forEach(part => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        const bold = document.createElement('strong');
+        bold.textContent = part.slice(2, -2);
+        element.appendChild(bold);
+      } else {
+        element.appendChild(document.createTextNode(part));
+      }
+    });
+  });
+
+  chatMessages.appendChild(element);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  return element;
+}
+ 
 
 let requestInProgress = false;
 
