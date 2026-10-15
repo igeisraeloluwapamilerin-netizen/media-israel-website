@@ -127,11 +127,19 @@ main{min-height:70vh}
 .chat-top small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
 .clear-chat{border:1px solid var(--line);border-radius:9px;background:#fff;color:#5c6c7c;font-size:11px;padding:8px 10px;cursor:pointer}
 .chat-messages{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1;min-height:260px;max-height:440px;overflow:auto;background:linear-gradient(#fbfdff,#f7fbff)}
-.bubble{max-width:90%;border-radius:15px;padding:14px 16px;font-size:13px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere}
+.bubble{max-width:90%;border-radius:15px;padding:14px 16px;font-size:13px;line-height:1.75;white-space:normal;overflow-wrap:anywhere}
 .bubble.assistant{align-self:flex-start;background:#fff;border:1px solid #e1ebf4;color:#334a61;border-top-left-radius:5px}
-.bubble.user{align-self:flex-end;background:#0b2c55;color:#fff;border-top-right-radius:5px}
-.bubble b{color:var(--navy)}
-.bubble.user b{color:#fff}
+.bubble.user{align-self:flex-end;background:#0b2c55;color:#fff;border-top-right-radius:5px;white-space:pre-wrap}
+.bubble b,.bubble strong{color:var(--navy)}
+.bubble.user b,.bubble.user strong{color:#fff}
+.bubble h1,.bubble h2,.bubble h3,.bubble h4{color:var(--navy);line-height:1.3;margin:12px 0 6px;font-size:1.08em}
+.bubble p{margin:0 0 9px}
+.bubble p:last-child{margin-bottom:0}
+.bubble ul,.bubble ol{margin:6px 0 10px;padding-left:22px}
+.bubble li{margin:3px 0}
+.bubble hr{border:0;border-top:1px solid var(--line);margin:10px 0}
+.bubble pre,.bubble code{white-space:pre-wrap;overflow-wrap:anywhere}
+.bubble blockquote{border-left:3px solid #8bbde5;margin:8px 0;padding:4px 0 4px 12px;color:#627286}
 .suggestions{display:flex;gap:8px;flex-wrap:wrap;padding:12px 18px 0}
 .suggestions button{border:1px solid #d7e8f6;border-radius:100px;background:#f4faff;color:#28618b;padding:8px 10px;font-size:10px;font-weight:750;cursor:pointer}
 .chat-compose{display:flex;gap:10px;padding:14px 18px 8px;align-items:flex-end}
@@ -444,78 +452,162 @@ const clearChatButton = document.getElementById('clearChat');
 const AI_ENDPOINT =
   'https://pbwwmbclnslaqegwihoj.supabase.co/functions/v1/smooth-endpoint';
 
-/* Paste your existing Supabase anon key between the quotes below. */
+/*
+  Replace the placeholder below with your existing Supabase anon key.
+  Never put your Gemini API key or Supabase service_role key in this file.
+*/
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBid3dtYmNsbnNsYXFlZ3dpaG9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5OTk0MTcsImV4cCI6MjEwNzU3NTQxN30.E95ZJqbpGMbQHsxFmEzIw0P3fSN6q8y3LRjj7AGWpAE';
 
+/* Create a normal chat bubble safely */
+function addBubble(text, role = 'assistant', extraClass = '') {
+  const element = document.createElement('div');
+  element.className = 'bubble ' + role;
 
+  if (extraClass) {
+    element.classList.add(extraClass);
+  }
 
+  element.textContent = String(text);
+  chatMessages.appendChild(element);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  return element;
+}
+
+/* Inline Markdown formatting without injecting raw HTML */
+function appendInlineMarkdown(parent, text) {
+  const pattern = /(\*\*[^*]+\*\*|__[^_]+__|(?<!\*)\*[^*\n]+\*|(?<!_)_[^_\n]+_|`[^`\n]+`)/g;
+  const parts = String(text).split(pattern);
+
+  parts.forEach(part => {
+    if (!part) return;
+
+    if (
+      (part.startsWith('**') && part.endsWith('**')) ||
+      (part.startsWith('__') && part.endsWith('__'))
+    ) {
+      const strong = document.createElement('strong');
+      strong.textContent = part.slice(2, -2);
+      parent.appendChild(strong);
+    } else if (
+      (part.startsWith('*') && part.endsWith('*')) ||
+      (part.startsWith('_') && part.endsWith('_'))
+    ) {
+      const italic = document.createElement('em');
+      italic.textContent = part.slice(1, -1);
+      parent.appendChild(italic);
+    } else if (part.startsWith('`') && part.endsWith('`')) {
+      const code = document.createElement('code');
+      code.textContent = part.slice(1, -1);
+      parent.appendChild(code);
+    } else {
+      parent.appendChild(document.createTextNode(part));
+    }
+  });
+}
+
+/* Display common Markdown headings, lists, paragraphs and separators */
 function addFormattedBubble(text) {
   const element = document.createElement('div');
   element.className = 'bubble assistant';
 
-  const lines = String(text).split('\n');
+  const lines = String(text).replace(/\r\n?/g, '\n').split('\n');
+  let listElement = null;
+  let listType = '';
+  let paragraphLines = [];
 
-  lines.forEach((line, index) => {
-    const trimmed = line.trim();
+  function flushParagraph() {
+    if (!paragraphLines.length) return;
 
-    if (index > 0) {
-      element.appendChild(document.createElement('br'));
+    const paragraph = document.createElement('p');
+    appendInlineMarkdown(paragraph, paragraphLines.join(' '));
+    element.appendChild(paragraph);
+    paragraphLines = [];
+  }
+
+  function closeList() {
+    listElement = null;
+    listType = '';
+  }
+
+  function startList(type) {
+    if (listElement && listType === type) return;
+
+    closeList();
+    listType = type;
+    listElement = document.createElement(type === 'ol' ? 'ol' : 'ul');
+    element.appendChild(listElement);
+  }
+
+  lines.forEach(rawLine => {
+    const line = rawLine.trim();
+
+    if (!line) {
+      flushParagraph();
+      closeList();
+      return;
     }
 
-    // Headings
-    const headingMatch = trimmed.match(/^#{1,6}\s+(.+)$/);
+    if (/^(-{3,}|\*{3,}|_{3,})$/.test(line)) {
+      flushParagraph();
+      closeList();
+      element.appendChild(document.createElement('hr'));
+      return;
+    }
+
+    const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
+
     if (headingMatch) {
-      const heading = document.createElement('strong');
-      heading.textContent = headingMatch[1].replace(/\*\*/g, '');
+      flushParagraph();
+      closeList();
+
+      const level = Math.min(headingMatch[1].length, 4);
+      const heading = document.createElement('h' + level);
+      appendInlineMarkdown(heading, headingMatch[2]);
       element.appendChild(heading);
       return;
     }
 
-    // Bullets and numbered lists
-    const listMatch = trimmed.match(/^([-*+]|\d+[.)])\s+(.+)$/);
-    let content = trimmed;
+    const unorderedMatch = line.match(/^[-*+]\s+(.+)$/);
+    const orderedMatch = line.match(/^\d+[.)]\s+(.+)$/);
 
-    if (listMatch) {
-      element.appendChild(document.createTextNode(
-        /^\d/.test(listMatch[1]) ? listMatch[1] + ' ' : '• '
-      ));
-      content = listMatch[2];
+    if (unorderedMatch || orderedMatch) {
+      flushParagraph();
+
+      const type = orderedMatch ? 'ol' : 'ul';
+      startList(type);
+
+      const item = document.createElement('li');
+      appendInlineMarkdown(
+        item,
+        (unorderedMatch || orderedMatch)[1]
+      );
+      listElement.appendChild(item);
+      return;
     }
 
-    // Bold and italic text
-    const parts = content.split(/(\*\*.*?\*\*|\*[^*]+\*)/g);
+    const quoteMatch = line.match(/^>\s?(.*)$/);
 
-    parts.forEach(part => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        const bold = document.createElement('strong');
-        bold.textContent = part.slice(2, -2);
-        element.appendChild(bold);
-      } else if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
-        const italic = document.createElement('em');
-        italic.textContent = part.slice(1, -1);
-        element.appendChild(italic);
-      } else {
-        element.appendChild(document.createTextNode(part));
-      }
-    });
+    if (quoteMatch) {
+      flushParagraph();
+      closeList();
+
+      const quote = document.createElement('blockquote');
+      appendInlineMarkdown(quote, quoteMatch[1]);
+      element.appendChild(quote);
+      return;
+    }
+
+    closeList();
+    paragraphLines.push(line);
   });
 
-  chatMessages.appendChild(element);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-  return element;
-}
-
+  flushParagraph();
 
   chatMessages.appendChild(element);
   chatMessages.scrollTop = chatMessages.scrollHeight;
   return element;
 }
-
-  chatMessages.appendChild(element);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-  return element;
-}
- 
 
 let requestInProgress = false;
 
@@ -526,10 +618,10 @@ async function sendMessage(question) {
 
   if (
     !SUPABASE_ANON_KEY ||
-    SUPABASE_ANON_KEY === 'PASTE_YOUR_SUPABASE_ANON_KEY_HERE'
+    SUPABASE_ANON_KEY === 'PASTE_YOUR_EXISTING_SUPABASE_ANON_KEY_HERE'
   ) {
     addBubble(
-      'Setup needed: add your Supabase anon key in the AI section of index.html.',
+      'Setup needed: open index.html and replace PASTE_YOUR_EXISTING_SUPABASE_ANON_KEY_HERE with your existing Supabase anon key.',
       'assistant',
       'error'
     );
@@ -587,7 +679,7 @@ async function sendMessage(question) {
 
     if (!answer.trim()) {
       throw new Error(
-        'The server responded but did not return an answer. Check the AI function.'
+        'The server responded but did not return an answer. Check the AI function response format.'
       );
     }
 
@@ -597,13 +689,13 @@ async function sendMessage(question) {
   } catch (error) {
     pending.remove();
 
-    const messageText =
+    const errorText =
       error instanceof TypeError
         ? 'Could not connect. Check your internet connection, Supabase endpoint and function settings.'
         : error.message;
 
     addBubble(
-      'AI connection error: ' + messageText,
+      'AI connection error: ' + errorText,
       'assistant',
       'error'
     );
@@ -619,11 +711,13 @@ async function sendMessage(question) {
   }
 }
 
+/* Submit chat */
 chatForm.addEventListener('submit', function(event) {
   event.preventDefault();
   sendMessage(chatInput.value);
 });
 
+/* Suggested questions */
 document.querySelectorAll('[data-prompt]').forEach(button => {
   button.addEventListener('click', function() {
     if (!requestInProgress) {
@@ -632,6 +726,7 @@ document.querySelectorAll('[data-prompt]').forEach(button => {
   });
 });
 
+/* Clear chat */
 clearChatButton.addEventListener('click', function() {
   if (requestInProgress) return;
 
@@ -654,7 +749,7 @@ clearChatButton.addEventListener('click', function() {
   chatMessages.appendChild(welcome);
 });
 
-/* Booking form: prepares an email for the user to review and send */
+/* Booking form: prepare an email for the user to review and send */
 document.getElementById('bookingForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
