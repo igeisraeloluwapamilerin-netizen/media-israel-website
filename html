@@ -515,16 +515,22 @@ try {
     throw new Error(data.error || `Request failed (${response.status})`);
   }
 
-  pending.textContent = data.reply || data.answer || data.message || 'I received a response, but no answer was returned.';
+
+pending.textContent =
+  data.reply || data.answer || data.message ||
+  'The AI responded, but no answer was returned.';
 
 } catch (error) {
   console.error('MediaIsrael AI error:', error);
   pending.textContent = 'AI connection failed. Please try again.';
+
 } finally {
   requestInProgress = false;
   chatInput.disabled = false;
-  document.getElementById('sendChat').disabled = false;
+  sendChatButton.disabled = false;
+  sendChatButton.textContent = 'Send';
   chatInput.focus();
+}
 }
 
 
