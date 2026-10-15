@@ -491,24 +491,41 @@ async function sendMessage(question) {
   sendChatButton.textContent = 'Sending…';
 
  
+
 const pending = addBubble(
   'Connecting to MediaIsrael AI…',
   'assistant',
   'typing'
 );
 
-try 
-const response = await fetch(AI_ENDPOINT, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBid3dtYmNsbnNsYXFlZ3dpaG9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5OTk0MTcsImV4cCI6MjEwNzU3NTQxN30.E95ZJqbpGMbQHsxFmEzIw0P3fSN6q8y3LRjj7AGWpAE',
-    'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBid3dtYmNsbnNsYXFlZ3dpaG9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5OTk0MTcsImV4cCI6MjEwNzU3NTQxN30.E95ZJqbpGMbQHsxFmEzIw0P3fSN6q8y3LRjj7AGWpAE'
-  },
-  body: JSON.stringify({ message })
-});
-
+try {
+  const response = await fetch(AI_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBid3dtYmNsbnNsYXFlZ3dpaG9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5OTk0MTcsImV4cCI6MjEwNzU3NTQxN30.E95ZJqbpGMbQHsxFmEzIw0P3fSN6q8y3LRjj7AGWpAE',
+      'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBid3dtYmNsbnNsYXFlZ3dpaG9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5OTk0MTcsImV4cCI6MjEwNzU3NTQxN30.E95ZJqbpGMbQHsxFmEzIw0P3fSN6q8y3LRjj7AGWpAE'
+    },
+    body: JSON.stringify({ message })
   });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || `Request failed (${response.status})`);
+  }
+
+  pending.textContent = data.reply || data.answer || data.message || 'I received a response, but no answer was returned.';
+
+} catch (error) {
+  console.error('MediaIsrael AI error:', error);
+  pending.textContent = 'AI connection failed. Please try again.';
+} finally {
+  requestInProgress = false;
+  chatInput.disabled = false;
+  document.getElementById('sendChat').disabled = false;
+  chatInput.focus();
+}
 
 
     let data;
