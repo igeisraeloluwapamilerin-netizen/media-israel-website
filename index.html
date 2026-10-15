@@ -531,7 +531,7 @@ async function sendMessage(question) {
     }
 
     pending.remove();
-    addBubble(answer, 'assistant');
+    addFormattedBubble(answer);
 
   } catch (error) {
     pending.remove();
