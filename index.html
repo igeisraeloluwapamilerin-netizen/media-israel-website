@@ -584,7 +584,7 @@ document.querySelectorAll('[data-prompt]').forEach(button => {
 
 clearChatButton.addEventListener('click', function() {
   if (requestInProgress) return;
-
+ 
   chatMessages.replaceChildren();
 
   const welcome = document.createElement('div');
