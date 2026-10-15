@@ -534,13 +534,7 @@ pending.textContent =
 }
 
 
-    let data;
-
-    try {
-      data = await response.json();
-    } catch {
-      throw new Error('The AI server returned an unreadable response.');
-    }
+   
 
     if (!response.ok) {
       throw new Error(
