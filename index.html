@@ -447,14 +447,7 @@ const AI_ENDPOINT =
 /* Paste your existing Supabase anon key between the quotes below. */
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBid3dtYmNsbnNsYXFlZ3dpaG9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5OTk0MTcsImV4cCI6MjEwNzU3NTQxN30.E95ZJqbpGMbQHsxFmEzIw0P3fSN6q8y3LRjj7AGWpAE';
 
-function addBubble(text, role, extra = '') {
-  const element = document.createElement('div');
-  element.className = 'bubble ' + role + (extra ? ' ' + extra : '');
-  element.textContent = text;
-  chatMessages.appendChild(element);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-  return element;
-}
+
 function addBubble(text, role, extra = '') {
   const element = document.createElement('div');
   element.className = 'bubble ' + role + (extra ? ' ' + extra : '');
@@ -471,22 +464,55 @@ function addFormattedBubble(text) {
   const lines = String(text).split('\n');
 
   lines.forEach((line, index) => {
+    const trimmed = line.trim();
+
     if (index > 0) {
       element.appendChild(document.createElement('br'));
     }
 
-    const parts = line.split(/(\*\*.*?\*\*)/g);
+    // Format headings.
+    const headingMatch = trimmed.match(/^#{1,6}\s+(.+)$/);
+    if (headingMatch) {
+      const heading = document.createElement('strong');
+      heading.textContent = headingMatch[1].replace(/\*\*/g, '');
+      element.appendChild(heading);
+      return;
+    }
+
+    // Format bullet points and numbered lists.
+    const listMatch = trimmed.match(/^([-*+]|\d+[.)])\s+(.+)$/);
+    let content = trimmed;
+
+    if (listMatch) {
+      const marker = document.createTextNode(
+        /^\d/.test(listMatch[1]) ? listMatch[1] + ' ' : '• '
+      );
+      element.appendChild(marker);
+      content = listMatch[2];
+    }
+
+    // Format bold and italic text safely.
+    const parts = content.split(/(\*\*.*?\*\*|\*[^*]+\*)/g);
 
     parts.forEach(part => {
       if (part.startsWith('**') && part.endsWith('**')) {
         const bold = document.createElement('strong');
         bold.textContent = part.slice(2, -2);
         element.appendChild(bold);
+      } else if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
+        const italic = document.createElement('em');
+        italic.textContent = part.slice(1, -1);
+        element.appendChild(italic);
       } else {
         element.appendChild(document.createTextNode(part));
       }
     });
   });
+
+  chatMessages.appendChild(element);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  return element;
+}
 
   chatMessages.appendChild(element);
   chatMessages.scrollTop = chatMessages.scrollHeight;
