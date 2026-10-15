@@ -497,15 +497,17 @@ const pending = addBubble(
   'typing'
 );
 
-try {
-  const response = await fetch(AI_ENDPOINT, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer pbwwmbclnslaqegwihoj',
-      'apikey': 'pbwwmbclnslaqegwihoj'
-    },
-    body: JSON.stringify({ message })
+try 
+const response = await fetch(AI_ENDPOINT, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBid3dtYmNsbnNsYXFlZ3dpaG9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5OTk0MTcsImV4cCI6MjEwNzU3NTQxN30.E95ZJqbpGMbQHsxFmEzIw0P3fSN6q8y3LRjj7AGWpAE',
+    'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBid3dtYmNsbnNsYXFlZ3dpaG9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5OTk0MTcsImV4cCI6MjEwNzU3NTQxN30.E95ZJqbpGMbQHsxFmEzIw0P3fSN6q8y3LRjj7AGWpAE'
+  },
+  body: JSON.stringify({ message })
+});
+
   });
 
 
